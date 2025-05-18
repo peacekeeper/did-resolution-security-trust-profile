@@ -237,7 +237,7 @@ The error code `notAllowedGlobalDuplicateKey` is returned in case of an error.
 }
 ```
 
-## Verifying High-Assurance Identifier Bindings
+## High-Assurance Identifier Binding Verification
 
 The [High Assurance DIDs with DNS](https://github.com/CIRALabs/high-assurance-dids-with-dns) specification
 defines mechanisms for bridging DIDs with other identifier and trust
@@ -371,7 +371,7 @@ https://<did-resolver>/identifiers/did:web:danubetech.com:did:test4?verifyDnsBri
 }
 ```
 
-## Querying Trust Registries
+## Trust Registry Lookups
 
 Trust registry infrastructures such as [[spec:TRAIN]], [[spec:EBSI]] [[spec:TRQP]] define mechanisms for obtaining
 information about trust relationships, associated with DIDs and other identifiers, for example to answer the question
@@ -533,7 +533,6 @@ https://<did-resolver>/identifiers/did:ebsi:zxE9ucTwx5V7Aean5Kj6Lz3"
 
 ```json
 {
-    "@context": "https://w3id.org/did-resolution/v1",
     "didDocument": {
         "@context": [
             "https://www.w3.org/ns/did/v1",
@@ -627,13 +626,26 @@ https://<did-resolver>/identifiers/did:ebsi:zxE9ucTwx5V7Aean5Kj6Lz3"
 }
 ```
 
-## Intercepting DID Resolution Operations
+## DID Resolution Interceptors
 
-This section defines an architecture that allows a DID Resolver to invoke an external service (via a webhook-like
-endpoint), which can effectively "intercept" a DID Resolution operation, for purposes of logging, caching, analysis,
-policy enforcement, augmentation of the DID Resolution Result, or similar purposes.
+This section defines an architecture that allows a DID Resolver to invoke an external service called a 
+DID Resolution Interceptor (via a webhook-like endpoint), which can effectively "intercept" a DID Resolution
+operation, for purposes of logging, caching, analysis, policy enforcement, augmentation of the DID Resolution
+Result, or similar purposes. The DID Resolution Interceptor can also "override" the DID Resolution Result, or
+return an error result.
 
+![Diagram showing DID Resolution Interception](images/diagram-interceptor.png)
 
+At the end of the DID Resolution process, after the DID Resolution Result has been produced, the DID Resolver calls
+the endpoint of a DID Resolution Interceptor with the following inputs and outputs:
+
+Inputs:
+- `did`: The DID that is being resolved
+- `didResolutionOptions`: The DID Resolution Options that have been passed by the Client to the DID Resolver
+- `didResolutionResult`: The DID Resolution Result produced by the DID Resolver
+
+Outputs:
+- `didResolutionResult`: The DID Resolution Result augmented by the DID Resolution Interceptor
 
 ## References
 

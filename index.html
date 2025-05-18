@@ -239,7 +239,7 @@ related to security aspects of the cryptographic keys found in the DID document.
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="verifying-high-assurance-identifier-bindings"><a class="toc-anchor" href="#verifying-high-assurance-identifier-bindings" >§</a> Verifying High-Assurance Identifier Bindings</h2>
+<h2 id="high-assurance-identifier-binding-verification"><a class="toc-anchor" href="#high-assurance-identifier-binding-verification" >§</a> High-Assurance Identifier Binding Verification</h2>
 <p>The <a path-0="github.com"path-1="CIRALabs"path-2="high-assurance-dids-with-dns"href="https://github.com/CIRALabs/high-assurance-dids-with-dns" >High Assurance DIDs with DNS</a> specification
 defines mechanisms for bridging DIDs with other identifier and trust
 domains such as X.509 certificates and Domain Name System (DNS) records. It accomplished this with
@@ -346,7 +346,7 @@ and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="querying-trust-registries"><a class="toc-anchor" href="#querying-trust-registries" >§</a> Querying Trust Registries</h2>
+<h2 id="trust-registry-lookups"><a class="toc-anchor" href="#trust-registry-lookups" >§</a> Trust Registry Lookups</h2>
 <p>Trust registry infrastructures such as [[spec:TRAIN]], [[spec:EBSI]] [[spec:TRQP]] define mechanisms for obtaining
 information about trust relationships, associated with DIDs and other identifiers, for example to answer the question
 “Is the entity identified by DID <X> authorized to issue/verify a credential of type <Y>?”</p>
@@ -485,7 +485,6 @@ defines the following <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"pa
 </code></pre>
 <h4 id="example-response-12"><a class="toc-anchor" href="#example-response-12" >§</a> Example Response</h4>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-    <span class="token property">"@context"</span><span class="token operator">:</span> <span class="token string">"https://w3id.org/did-resolution/v1"</span><span class="token punctuation">,</span>
     <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
         <span class="token property">"@context"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
             <span class="token string">"https://www.w3.org/ns/did/v1"</span><span class="token punctuation">,</span>
@@ -578,10 +577,25 @@ defines the following <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"pa
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="intercepting-did-resolution-operations"><a class="toc-anchor" href="#intercepting-did-resolution-operations" >§</a> Intercepting DID Resolution Operations</h2>
-<p>This section defines an architecture that allows a DID Resolver to invoke an external service (via a webhook-like
-endpoint), which can effectively “intercept” a DID Resolution operation, for purposes of logging, caching, analysis,
-policy enforcement, augmentation of the DID Resolution Result, or similar purposes.</p>
+<h2 id="did-resolution-interceptors"><a class="toc-anchor" href="#did-resolution-interceptors" >§</a> DID Resolution Interceptors</h2>
+<p>This section defines an architecture that allows a DID Resolver to invoke an external service called a
+DID Resolution Interceptor (via a webhook-like endpoint), which can effectively “intercept” a DID Resolution
+operation, for purposes of logging, caching, analysis, policy enforcement, augmentation of the DID Resolution
+Result, or similar purposes. The DID Resolution Interceptor can also “override” the DID Resolution Result, or
+return an error result.</p>
+<p><img src="images/diagram-interceptor.png" alt="Diagram showing DID Resolution Interception"></p>
+<p>At the end of the DID Resolution process, after the DID Resolution Result has been produced, the DID Resolver calls
+the endpoint of a DID Resolution Interceptor with the following inputs and outputs:</p>
+<p>Inputs:</p>
+<ul>
+<li><code>did</code>: The DID that is being resolved</li>
+<li><code>didResolutionOptions</code>: The DID Resolution Options that have been passed by the Client to the DID Resolver</li>
+<li><code>didResolutionResult</code>: The DID Resolution Result produced by the DID Resolver</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><code>didResolutionResult</code>: The DID Resolution Result augmented by the DID Resolution Interceptor</li>
+</ul>
 <h2 id="references"><a class="toc-anchor" href="#references" >§</a> References</h2>
 <p>[[spec]]</p>
 <h2 id="acknowledgements"><a class="toc-anchor" href="#acknowledgements" >§</a> Acknowledgements</h2>
@@ -670,7 +684,7 @@ policy enforcement, augmentation of the DID Resolution Result, or similar purpos
 </li>
 </ul>
 </li>
-<li><a href="#verifying-high-assurance-identifier-bindings" >Verifying High-Assurance Identifier Bindings</a>
+<li><a href="#high-assurance-identifier-binding-verification" >High-Assurance Identifier Binding Verification</a>
 <ul>
 <li><a href="#did-parameter-verifydnsbridge" >DID Parameter: <code>verifyDnsBridge</code></a>
 <ul>
@@ -688,7 +702,7 @@ policy enforcement, augmentation of the DID Resolution Result, or similar purpos
 </li>
 </ul>
 </li>
-<li><a href="#querying-trust-registries" >Querying Trust Registries</a>
+<li><a href="#trust-registry-lookups" >Trust Registry Lookups</a>
 <ul>
 <li><a href="#trqp" >TRQP</a>
 <ul>
@@ -710,7 +724,7 @@ policy enforcement, augmentation of the DID Resolution Result, or similar purpos
 </li>
 </ul>
 </li>
-<li><a href="#intercepting-did-resolution-operations" >Intercepting DID Resolution Operations</a></li>
+<li><a href="#did-resolution-interceptors" >DID Resolution Interceptors</a></li>
 <li><a href="#references" >References</a></li>
 <li><a href="#acknowledgements" >Acknowledgements</a></li>
 <li><a href="#appendix" >Appendix</a>
