@@ -1,5 +1,5 @@
-DID Security and Trust Profile
-==============================
+DID Resolution Security and Trust Profile
+=========================================
 
 **Specification Status:** [Draft](https://github.com/decentralized-identity/org/blob/master/work-item-lifecycle.md)
 
@@ -34,8 +34,9 @@ to a DID document by executing the read() operation is well-understood and speci
 [DID Resolution](https://www.w3.org/TR/did-resolution/) specification.
 
 This document extends the process of DID Resolution by defining
-[DID parameters](https://www.w3.org/TR/did-resolution/#did-parameters)
-and [DID Resolution metadata properties](https://www.w3.org/TR/did-resolution/#did-resolution-metadata)
+[DID Parameters](https://www.w3.org/TR/did-resolution/#did-parameters),
+[DID Document Metadata properties](https://www.w3.org/TR/did-resolution/#did-document-metadata)
+and [DID Resolution Metadata properties](https://www.w3.org/TR/did-resolution/#did-resolution-metadata)
 related to security and trust aspects of DIDs and DID Resolution.
 
 This work is related to and references various other specifications and documents, 
@@ -59,11 +60,15 @@ DID Method | A definition of how a specific DID scheme implementeds the precise 
 DID Document | A set of data describing the DID subject, service and verification methods, that the DID subject or a DID delegate can use to authenticate itself and prove its association with the DID.
 DID Resolver | A software and/or hardware component that implements the DID resolution function.
 
-## Validity of the DID document
+## DID Document Validity
+
+This section defines extension [DID Parameters](https://www.w3.org/TR/did-resolution/#did-parameters)
+and [DID Resolution Metadata properties](https://www.w3.org/TR/did-resolution/#did-resolution-metadata)
+related to validity of the DID document.
 
 ### DID Parameter: `checkValidDidDocument`
 
-This DID parameter is used to check if a resolved DID document is valid, i.e. conformant with the [DID](https://www.w3.org/TR/did-1.1/) data model. Possible values are `ignore`, `warn`, `error`.
+This DID Parameter is used to check if a resolved DID document is valid, i.e. conformant with the [DID](https://www.w3.org/TR/did-1.1/) data model. Possible values are `ignore`, `warn`, `error`.
 
 The error code `invalidDidDocument` is returned in case of an error.
 
@@ -92,11 +97,15 @@ https://<did-resolver>/identifiers/<did>?checkValidDidDocument=error"
 }
 ```
 
-## Allow- and deny-list policies
+## DID Document Policies
+
+This section defines extension [DID Parameters](https://www.w3.org/TR/did-resolution/#did-parameters)
+and [DID Resolution Metadata properties](https://www.w3.org/TR/did-resolution/#did-resolution-metadata)
+related to policies about the DID and DID document, using allow-lists and deny-lists.
 
 ### DID Parameter: `checkMethod`
 
-This DID parameter is used to check if the DID method is not allowed, based on an allow-list and deny-list. Possible values are `ignore`, `warn`, `error`.
+This DID Parameter is used to check if the DID method is not allowed, based on an allow-list and deny-list. Possible values are `ignore`, `warn`, `error`.
 
 The error code `notAllowedMethod` is returned in case of an error.
 
@@ -114,7 +123,7 @@ The error code `notAllowedMethod` is returned in case of an error.
 
 ### DID Parameter: `checkKeyType`
 
-This DID parameter is used to check if the DID document contains a key type that is not allowed, based on an allow-list and deny-list. Possible values are `ignore`, `warn`, `error`.
+This DID Parameter is used to check if the DID document contains a key type that is not allowed, based on an allow-list and deny-list. Possible values are `ignore`, `warn`, `error`.
 
 The error code `notAllowedKeyType` is returned in case of an error.
 
@@ -132,7 +141,7 @@ The error code `notAllowedKeyType` is returned in case of an error.
 
 ### DID Parameter: `checkVerificationMethodType`
 
-This DID parameter is used to check if the DID document contains a verification method with a type that is not allowed, based on an allow-list and deny-list. Possible values are `ignore`, `warn`, `error`.
+This DID Parameter is used to check if the DID document contains a verification method with a type that is not allowed, based on an allow-list and deny-list. Possible values are `ignore`, `warn`, `error`.
 
 The error code `notAllowedVerificationMethodType` is returned in case of an error.
 
@@ -148,11 +157,15 @@ The error code `notAllowedVerificationMethodType` is returned in case of an erro
 }
 ```
 
-## Cryptographic aspects of the DID document
+## DID Document Key Security
+
+This section defines extension [DID Parameters](https://www.w3.org/TR/did-resolution/#did-parameters)
+and [DID Resolution Metadata properties](https://www.w3.org/TR/did-resolution/#did-resolution-metadata)
+related to security aspects of the cryptographic keys found in the DID document.
 
 ### DID Parameter: `checkLocalDerivedKey`
 
-This DID parameter is used to check if derived keys have been detected in the DID document, e.g. an X25519 key derived from an Ed25519 key. Possible values are `ignore`, `warn`, `error`.
+This DID Parameter is used to check if derived keys have been detected in the DID document, e.g. an X25519 key derived from an Ed25519 key. Possible values are `ignore`, `warn`, `error`.
 
 The error code `notAllowedLocalDerivedKey` is returned in case of an error.
 
@@ -179,7 +192,7 @@ https://<did-resolver>/identifiers/<did>?checkLocalDerivedKey=error"
 
 ### DID Parameter: `checkLocalDuplicateKey`
 
-This DID parameter is used to check if duplicate keys have been detected in the DID document. Possible values are `ignore`, `warn`, `error`.
+This DID Parameter is used to check if duplicate keys have been detected in the DID document. Possible values are `ignore`, `warn`, `error`.
 
 The error code `notAllowedLocalDuplicateKey` is returned in case of an error.
 
@@ -208,7 +221,7 @@ https://<did-resolver>/identifiers/<did>?checkLocalDuplicateKey=error"
 
 ### DID Parameter: `checkGlobalDuplicateKey`
 
-This DID parameter is used to check if duplicate keys have been detected between the DID document and other globally known DID documents. Possible values are `ignore`, `warn`, `error`.
+This DID Parameter is used to check if duplicate keys have been detected between the DID document and other globally known DID documents. Possible values are `ignore`, `warn`, `error`.
 
 The error code `notAllowedGlobalDuplicateKey` is returned in case of an error.
 
@@ -226,19 +239,20 @@ The error code `notAllowedGlobalDuplicateKey` is returned in case of an error.
 
 ## Verifying High-Assurance Identifier Bindings
 
-The specification [[spec:HAVID]] defines mechanisms for bridging DIDs with other identifier and trust
+The [High Assurance DIDs with DNS](https://github.com/CIRALabs/high-assurance-dids-with-dns) specification
+defines mechanisms for bridging DIDs with other identifier and trust
 domains such as X.509 certificates and Domain Name System (DNS) records. It accomplished this with
 cryptographic bridges (using control of public/private key pairs) and non-cryptographic bridges (using
 references).
 
-This section defines extension [DID parameters](https://www.w3.org/TR/did-resolution/#did-parameters)
+This section defines extension [DID Parameters](https://www.w3.org/TR/did-resolution/#did-parameters)
 and [DID Resolution Metadata properties](https://www.w3.org/TR/did-resolution/#did-resolution-metadata)
 that enable a DID Resolver to verify the bridge(s) between the DID that is being resolved, and other
 identifier and trust domains.
 
 ### DID Parameter: `verifyDnsBridge`
 
-This DID parameter is used to check if a DID document contains a bridge to a domain name that cannot be verified via
+This DID Parameter is used to check if a DID document contains a bridge to a domain name that cannot be verified via
 DNS, according to the [High Assurance DIDs with DNS](https://github.com/CIRALabs/high-assurance-dids-with-dns) specification, based on an allow-list and deny-list.
 Possible values are `ignore`, `warn`, `error`.
 
@@ -296,7 +310,7 @@ https://<did-resolver>/identifiers/did:web:danubetech.com:did:test7?verifyDnsBri
 
 ### DID Parameter: `verifyCertificateBridge`
 
-This DID parameter is used to check if a DID document contains a key that cannot be traced back to a trusted
+This DID Parameter is used to check if a DID document contains a key that cannot be traced back to a trusted
 certificate authority, according to the [High Assurance DIDs with DNS](https://github.com/CIRALabs/high-assurance-dids-with-dns) specification, based on an allow-list
 and deny-list. Possible values are `ignore`, `warn`, `error`.
 
@@ -357,10 +371,6 @@ https://<did-resolver>/identifiers/did:web:danubetech.com:did:test4?verifyDnsBri
 }
 ```
 
-## Intercepting DID Resolution Operations
-
-TODO
-
 ## Querying Trust Registries
 
 Trust registry infrastructures such as [[spec:TRAIN]], [[spec:EBSI]] [[spec:TRQP]] define mechanisms for obtaining
@@ -373,10 +383,139 @@ trust relationships as part of the [DID Resolution Result](https://www.w3.org/TR
 
 ### TRQP
 
+For the [Trust Registry Query Protocol](https://trustoverip.github.io/tswg-trust-registry-protocol/) (TRQP), this section
+defines the following [DID Parameters](https://www.w3.org/TR/did-resolution/#did-metadata-metadata) and
+[DID Resolution Metadata properties](https://www.w3.org/TR/did-resolution/#did-resolution-metadata):
+
+DID Parameters:
+
+- `trqpEcosystemid`: An ecosystem identifier as defined by TRQP.
+- `trqpAuthorizationId`: One of the defined authorization types defined by TRQP.
+- `trqpTime`: A timestamp in RFC3339 UTC format indicating when to evaluate the TRQP query.
+
+DID Resolution Metadata properties:
+
+- `trqpAuthorizationStatus`: One of the authorization status codes defined by TRQP. Possible values are: `authorized`, `not-authorized`, `revoked`, `unknown-subject`, `error`.
+
+#### Example Request
+
+```
+https://<did-resolver>/identifiers/did:web:danubetech.com?trqpEcosystemid=ecosystemA&trqpAuthorizationId=DriversLicenseIssuer"
+```
+
+#### Example Response
+
+```json
+{
+    "didDocument": {
+        "@context": [
+            "https://www.w3.org/ns/did/v1",
+            "https://w3id.org/security/suites/jws-2020/v1"
+        ],
+        "id": "did:web:danubetech.com",
+        "service": [
+            {
+                "id": "did:web:danubetech.com#godiddy-docs-apis",
+                "serviceEndpoint": "https://docs.godiddy.com/en/apis/"
+            },
+            {
+                "id": "did:web:danubetech.com#github",
+                "serviceEndpoint": "https://github.com/danubetech/"
+            }
+        ],
+        "verificationMethod": [
+            {
+                "id": "did:web:danubetech.com#key-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:danubetech.com",
+                "publicKeyJwk": {
+                    "kty": "EC",
+                    "crv": "P-384",
+                    "x": "68CilmUEdVWmxJrFOKdTNYaMPJayWkoTGP03qe_WErehZPu4XKhw2qxgpNZ2vBG7",
+                    "y": "4IQgfsVSw0OrYprQNJYCHC3RYGtgC87rQtQrMNVZAricEDw78F7Qq9uJ3wMXj5LG"
+                }
+            }
+        ],
+        "assertionMethod": [
+            "did:web:danubetech.com#key-1"
+        ],
+        "authentication": [
+            "did:web:danubetech.com#key-1"
+        ]
+    },
+    "didResolutionMetadata": {
+        "trqpAuthorizationStatus": "not-authorized"
+    },
+    "didDocumentMetadata": { }
+}
+```
+
+### TRAIN
+
+For [TRAIN](https://www.hci.iao.fraunhofer.de/de/identity-management/identity-und-accessmanagement/TRAIN.html) (TRQP), this section
+defines the following [DID Parameters](https://www.w3.org/TR/did-resolution/#did-metadata-metadata) and
+[DID Resolution Metadata properties](https://www.w3.org/TR/did-resolution/#did-resolution-metadata):
+
+DID Parameters:
+
+- `trainTrustSchemePointers`
+
+DID Resolution Metadata properties:
+
+- `trainVerificationStatus`: Result of the TRAIN trust verification process. Possible values are: `OK`, `FAILED`.
+- `trainVerificationResult`: Additional properties about the TRAIN trust verification process.
+
+#### Example Request
+
+```
+https://<did-resolver>/identifiers/did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80?trainTrustSchemePointers=example.federation1.de"
+```
+
+#### Example Response
+
+```json
+{
+  "didDocument": {
+    "@context": [
+      "https://www.w3.org/ns/did/v1",
+      "https://w3id.org/security/suites/ed25519-2018/v1"
+    ],
+    "id": "did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80",
+    "controller": [
+      "did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80"
+    ],
+    "verificationMethod": [
+      {
+        "id": "did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80#key-1",
+        "type": "Ed25519VerificationKey2018",
+        "controller": "did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80",
+        "publicKeyBase58": "4WKYEuGoVAsGPwWWwK95fKH3CBb9RWnc2fDw6Ea1vzA2"
+      }
+    ],
+    "authentication": [
+      "did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80#key-1"
+    ]
+  },
+  "didResolutionMetadata": {
+    "trainVerificationStatus": "OK",
+    "trainVerificationResult": {
+      "FindingCorrespondingTrustSchemeInitiated": "OK",
+      "TrustListDiscoveryInitiated": "OK",
+      "FoundIssuer": "string",
+      "VerifyIssuer": "OK",
+      "VerificationSuccessful": "OK"
+    }
+  },
+  "didDocumentMetadata": {}
+}
+```
+
 ### EBSI
 
-For the European Blockchain Service Infrastructure (EBSI), this section defines the following
-[DID Document Metadata properties](https://www.w3.org/TR/did-resolution/#did-metadata-metadata):
+For the [European Blockchain Service Infrastructure](https://hub.ebsi.eu/vc-framework/trust-model) (EBSI), this section
+defines the following [DID Document Metadata properties](https://www.w3.org/TR/did-resolution/#did-metadata-metadata):
+
+DID Document Metadata properties:
 
 - `issuerType`: Possible values: `TI`, `TAO`, `RootTAO`
 - `trustChain`:
@@ -387,7 +526,7 @@ For the European Blockchain Service Infrastructure (EBSI), this section defines 
 #### Example Request
 
 ```
-https://<did-resolver>/identifiers/did:web:danubetech.com:did:test4?verifyDnsBridge=error"
+https://<did-resolver>/identifiers/did:ebsi:zxE9ucTwx5V7Aean5Kj6Lz3"
 ```
 
 #### Example Response
@@ -436,7 +575,7 @@ https://<did-resolver>/identifiers/did:web:danubetech.com:did:test4?verifyDnsBri
             "did:ebsi:zxE9ucTwx5V7Aean5Kj6Lz3#lEvEATg9BM78yHKXsyBG_rNdJ2yrKJka9pPK-DTmfqc"
         ]
     },
-    "didResolutionMetadata": { }
+    "didResolutionMetadata": { },
     "didDocumentMetadata": {
         "issuerType": "TAO",
         "trustChain": {
@@ -488,13 +627,21 @@ https://<did-resolver>/identifiers/did:web:danubetech.com:did:test4?verifyDnsBri
 }
 ```
 
+## Intercepting DID Resolution Operations
+
+This section defines an architecture that allows a DID Resolver to invoke an external service (via a webhook-like
+endpoint), which can effectively "intercept" a DID Resolution operation, for purposes of logging, caching, analysis,
+policy enforcement, augmentation of the DID Resolution Result, or similar purposes.
+
+
+
 ## References
 
 [[spec]]
 
 ## Acknowledgements
 
-<img align="left" src="images/logo-cyberstand.svg" width="115">
+<img align="left" src="images/logo-cyberstand.png" width="115">
 
 Supported by [Cyberstand.eu](https://cyberstand.eu/), which is made possible with financial support from the European Commission.
 

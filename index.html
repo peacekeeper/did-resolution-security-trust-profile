@@ -47,7 +47,7 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
                     </header>
       
                     <article id="content">
-                      <h1 id="did-security-and-trust-profile"><a class="toc-anchor" href="#did-security-and-trust-profile" >§</a> DID Security and Trust Profile</h1>
+                      <h1 id="did-resolution-security-and-trust-profile"><a class="toc-anchor" href="#did-resolution-security-and-trust-profile" >§</a> DID Resolution Security and Trust Profile</h1>
 <p><strong>Specification Status:</strong> <a path-0="github.com"path-1="decentralized-identity"path-2="org"path-3="blob"path-4="master"path-5="work-item-lifecycle.md"href="https://github.com/decentralized-identity/org/blob/master/work-item-lifecycle.md" >Draft</a></p>
 <p><strong>Latest Draft:</strong>
 <a path-0="identity.foundation"path-1="did-resolution-security-trust-profile"href="https://identity.foundation/did-resolution-security-trust-profile" >identity.foundation/did-resolution-security-trust-profile</a></p>
@@ -80,8 +80,9 @@ various steps, architectural components, and network communication. The process 
 to a DID document by executing the read() operation is well-understood and specified in the
 <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3=""href="https://www.w3.org/TR/did-resolution/" >DID Resolution</a> specification.</p>
 <p>This document extends the process of DID Resolution by defining
-<a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-parameters"href="https://www.w3.org/TR/did-resolution/#did-parameters" >DID parameters</a>
-and <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-resolution-metadata"href="https://www.w3.org/TR/did-resolution/#did-resolution-metadata" >DID Resolution metadata properties</a>
+<a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-parameters"href="https://www.w3.org/TR/did-resolution/#did-parameters" >DID Parameters</a>,
+<a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-document-metadata"href="https://www.w3.org/TR/did-resolution/#did-document-metadata" >DID Document Metadata properties</a>
+and <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-resolution-metadata"href="https://www.w3.org/TR/did-resolution/#did-resolution-metadata" >DID Resolution Metadata properties</a>
 related to security and trust aspects of DIDs and DID Resolution.</p>
 <p>This work is related to and references various other specifications and documents,</p>
 <h2 id="status-of-this-document"><a class="toc-anchor" href="#status-of-this-document" >§</a> Status of This Document</h2>
@@ -118,9 +119,12 @@ active engagement on GitHub (see above) and other mediums (e.g. DIF).</p>
 </tr>
 </tbody>
 </table>
-<h2 id="validity-of-the-did-document"><a class="toc-anchor" href="#validity-of-the-did-document" >§</a> Validity of the DID document</h2>
+<h2 id="did-document-validity"><a class="toc-anchor" href="#did-document-validity" >§</a> DID Document Validity</h2>
+<p>This section defines extension <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-parameters"href="https://www.w3.org/TR/did-resolution/#did-parameters" >DID Parameters</a>
+and <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-resolution-metadata"href="https://www.w3.org/TR/did-resolution/#did-resolution-metadata" >DID Resolution Metadata properties</a>
+related to validity of the DID document.</p>
 <h3 id="did-parameter-checkvaliddiddocument"><a class="toc-anchor" href="#did-parameter-checkvaliddiddocument" >§</a> DID Parameter: <code>checkValidDidDocument</code></h3>
-<p>This DID parameter is used to check if a resolved DID document is valid, i.e. conformant with the <a path-0="www.w3.org"path-1="TR"path-2="did-1.1"path-3=""href="https://www.w3.org/TR/did-1.1/" >DID</a> data model. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
+<p>This DID Parameter is used to check if a resolved DID document is valid, i.e. conformant with the <a path-0="www.w3.org"path-1="TR"path-2="did-1.1"path-3=""href="https://www.w3.org/TR/did-1.1/" >DID</a> data model. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
 <p>The error code <code>invalidDidDocument</code> is returned in case of an error.</p>
 <h4 id="example-request"><a class="toc-anchor" href="#example-request" >§</a> Example Request</h4>
 <pre><code>https://&lt;did-resolver&gt;/identifiers/&lt;did&gt;?checkValidDidDocument=error&quot;
@@ -141,9 +145,12 @@ active engagement on GitHub (see above) and other mediums (e.g. DIF).</p>
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="allow-and-deny-list-policies"><a class="toc-anchor" href="#allow-and-deny-list-policies" >§</a> Allow- and deny-list policies</h2>
+<h2 id="did-document-policies"><a class="toc-anchor" href="#did-document-policies" >§</a> DID Document Policies</h2>
+<p>This section defines extension <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-parameters"href="https://www.w3.org/TR/did-resolution/#did-parameters" >DID Parameters</a>
+and <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-resolution-metadata"href="https://www.w3.org/TR/did-resolution/#did-resolution-metadata" >DID Resolution Metadata properties</a>
+related to policies about the DID and DID document, using allow-lists and deny-lists.</p>
 <h3 id="did-parameter-checkmethod"><a class="toc-anchor" href="#did-parameter-checkmethod" >§</a> DID Parameter: <code>checkMethod</code></h3>
-<p>This DID parameter is used to check if the DID method is not allowed, based on an allow-list and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
+<p>This DID Parameter is used to check if the DID method is not allowed, based on an allow-list and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
 <p>The error code <code>notAllowedMethod</code> is returned in case of an error.</p>
 <h4 id="example-response-2"><a class="toc-anchor" href="#example-response-2" >§</a> Example Response</h4>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
@@ -155,7 +162,7 @@ active engagement on GitHub (see above) and other mediums (e.g. DIF).</p>
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="did-parameter-checkkeytype"><a class="toc-anchor" href="#did-parameter-checkkeytype" >§</a> DID Parameter: <code>checkKeyType</code></h3>
-<p>This DID parameter is used to check if the DID document contains a key type that is not allowed, based on an allow-list and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
+<p>This DID Parameter is used to check if the DID document contains a key type that is not allowed, based on an allow-list and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
 <p>The error code <code>notAllowedKeyType</code> is returned in case of an error.</p>
 <h4 id="example-response-3"><a class="toc-anchor" href="#example-response-3" >§</a> Example Response</h4>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
@@ -167,7 +174,7 @@ active engagement on GitHub (see above) and other mediums (e.g. DIF).</p>
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="did-parameter-checkverificationmethodtype"><a class="toc-anchor" href="#did-parameter-checkverificationmethodtype" >§</a> DID Parameter: <code>checkVerificationMethodType</code></h3>
-<p>This DID parameter is used to check if the DID document contains a verification method with a type that is not allowed, based on an allow-list and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
+<p>This DID Parameter is used to check if the DID document contains a verification method with a type that is not allowed, based on an allow-list and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
 <p>The error code <code>notAllowedVerificationMethodType</code> is returned in case of an error.</p>
 <h4 id="example-response-4"><a class="toc-anchor" href="#example-response-4" >§</a> Example Response</h4>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
@@ -178,9 +185,12 @@ active engagement on GitHub (see above) and other mediums (e.g. DIF).</p>
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="cryptographic-aspects-of-the-did-document"><a class="toc-anchor" href="#cryptographic-aspects-of-the-did-document" >§</a> Cryptographic aspects of the DID document</h2>
+<h2 id="did-document-key-security"><a class="toc-anchor" href="#did-document-key-security" >§</a> DID Document Key Security</h2>
+<p>This section defines extension <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-parameters"href="https://www.w3.org/TR/did-resolution/#did-parameters" >DID Parameters</a>
+and <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-resolution-metadata"href="https://www.w3.org/TR/did-resolution/#did-resolution-metadata" >DID Resolution Metadata properties</a>
+related to security aspects of the cryptographic keys found in the DID document.</p>
 <h3 id="did-parameter-checklocalderivedkey"><a class="toc-anchor" href="#did-parameter-checklocalderivedkey" >§</a> DID Parameter: <code>checkLocalDerivedKey</code></h3>
-<p>This DID parameter is used to check if derived keys have been detected in the DID document, e.g. an X25519 key derived from an Ed25519 key. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
+<p>This DID Parameter is used to check if derived keys have been detected in the DID document, e.g. an X25519 key derived from an Ed25519 key. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
 <p>The error code <code>notAllowedLocalDerivedKey</code> is returned in case of an error.</p>
 <h4 id="example-request-2"><a class="toc-anchor" href="#example-request-2" >§</a> Example Request</h4>
 <pre><code>https://&lt;did-resolver&gt;/identifiers/&lt;did&gt;?checkLocalDerivedKey=error&quot;
@@ -198,7 +208,7 @@ active engagement on GitHub (see above) and other mediums (e.g. DIF).</p>
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="did-parameter-checklocalduplicatekey"><a class="toc-anchor" href="#did-parameter-checklocalduplicatekey" >§</a> DID Parameter: <code>checkLocalDuplicateKey</code></h3>
-<p>This DID parameter is used to check if duplicate keys have been detected in the DID document. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
+<p>This DID Parameter is used to check if duplicate keys have been detected in the DID document. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
 <p>The error code <code>notAllowedLocalDuplicateKey</code> is returned in case of an error.</p>
 <h4 id="example-request-3"><a class="toc-anchor" href="#example-request-3" >§</a> Example Request</h4>
 <pre><code>https://&lt;did-resolver&gt;/identifiers/&lt;did&gt;?checkLocalDuplicateKey=error&quot;
@@ -218,7 +228,7 @@ active engagement on GitHub (see above) and other mediums (e.g. DIF).</p>
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="did-parameter-checkglobalduplicatekey"><a class="toc-anchor" href="#did-parameter-checkglobalduplicatekey" >§</a> DID Parameter: <code>checkGlobalDuplicateKey</code></h3>
-<p>This DID parameter is used to check if duplicate keys have been detected between the DID document and other globally known DID documents. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
+<p>This DID Parameter is used to check if duplicate keys have been detected between the DID document and other globally known DID documents. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
 <p>The error code <code>notAllowedGlobalDuplicateKey</code> is returned in case of an error.</p>
 <h4 id="example-response-7"><a class="toc-anchor" href="#example-response-7" >§</a> Example Response</h4>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
@@ -230,16 +240,17 @@ active engagement on GitHub (see above) and other mediums (e.g. DIF).</p>
 <span class="token punctuation">}</span>
 </code></pre>
 <h2 id="verifying-high-assurance-identifier-bindings"><a class="toc-anchor" href="#verifying-high-assurance-identifier-bindings" >§</a> Verifying High-Assurance Identifier Bindings</h2>
-<p>The specification [[spec:HAVID]] defines mechanisms for bridging DIDs with other identifier and trust
+<p>The <a path-0="github.com"path-1="CIRALabs"path-2="high-assurance-dids-with-dns"href="https://github.com/CIRALabs/high-assurance-dids-with-dns" >High Assurance DIDs with DNS</a> specification
+defines mechanisms for bridging DIDs with other identifier and trust
 domains such as X.509 certificates and Domain Name System (DNS) records. It accomplished this with
 cryptographic bridges (using control of public/private key pairs) and non-cryptographic bridges (using
 references).</p>
-<p>This section defines extension <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-parameters"href="https://www.w3.org/TR/did-resolution/#did-parameters" >DID parameters</a>
+<p>This section defines extension <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-parameters"href="https://www.w3.org/TR/did-resolution/#did-parameters" >DID Parameters</a>
 and <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-resolution-metadata"href="https://www.w3.org/TR/did-resolution/#did-resolution-metadata" >DID Resolution Metadata properties</a>
 that enable a DID Resolver to verify the bridge(s) between the DID that is being resolved, and other
 identifier and trust domains.</p>
 <h3 id="did-parameter-verifydnsbridge"><a class="toc-anchor" href="#did-parameter-verifydnsbridge" >§</a> DID Parameter: <code>verifyDnsBridge</code></h3>
-<p>This DID parameter is used to check if a DID document contains a bridge to a domain name that cannot be verified via
+<p>This DID Parameter is used to check if a DID document contains a bridge to a domain name that cannot be verified via
 DNS, according to the <a path-0="github.com"path-1="CIRALabs"path-2="high-assurance-dids-with-dns"href="https://github.com/CIRALabs/high-assurance-dids-with-dns" >High Assurance DIDs with DNS</a> specification, based on an allow-list and deny-list.
 Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
 <p>The error code <code>unverifiableDnsBridge</code> is returned in case of an error.</p>
@@ -285,7 +296,7 @@ Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.<
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="did-parameter-verifycertificatebridge"><a class="toc-anchor" href="#did-parameter-verifycertificatebridge" >§</a> DID Parameter: <code>verifyCertificateBridge</code></h3>
-<p>This DID parameter is used to check if a DID document contains a key that cannot be traced back to a trusted
+<p>This DID Parameter is used to check if a DID document contains a key that cannot be traced back to a trusted
 certificate authority, according to the <a path-0="github.com"path-1="CIRALabs"path-2="high-assurance-dids-with-dns"href="https://github.com/CIRALabs/high-assurance-dids-with-dns" >High Assurance DIDs with DNS</a> specification, based on an allow-list
 and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
 <p>The error code <code>unverifiableCertificateBridge</code> is returned in case of an error.</p>
@@ -335,8 +346,6 @@ and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="intercepting-did-resolution-operations"><a class="toc-anchor" href="#intercepting-did-resolution-operations" >§</a> Intercepting DID Resolution Operations</h2>
-<p>TODO</p>
 <h2 id="querying-trust-registries"><a class="toc-anchor" href="#querying-trust-registries" >§</a> Querying Trust Registries</h2>
 <p>Trust registry infrastructures such as [[spec:TRAIN]], [[spec:EBSI]] [[spec:TRQP]] define mechanisms for obtaining
 information about trust relationships, associated with DIDs and other identifiers, for example to answer the question
@@ -345,9 +354,122 @@ information about trust relationships, associated with DIDs and other identifier
 that enable a DID Resolver to query trust registry infrastructures like the above, and to return information about
 trust relationships as part of the <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-resolution-result"href="https://www.w3.org/TR/did-resolution/#did-resolution-result" >DID Resolution Result</a>.</p>
 <h3 id="trqp"><a class="toc-anchor" href="#trqp" >§</a> TRQP</h3>
+<p>For the <a path-0="trustoverip.github.io"path-1="tswg-trust-registry-protocol"path-2=""href="https://trustoverip.github.io/tswg-trust-registry-protocol/" >Trust Registry Query Protocol</a> (TRQP), this section
+defines the following <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-metadata-metadata"href="https://www.w3.org/TR/did-resolution/#did-metadata-metadata" >DID Parameters</a> and
+<a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-resolution-metadata"href="https://www.w3.org/TR/did-resolution/#did-resolution-metadata" >DID Resolution Metadata properties</a>:</p>
+<p>DID Parameters:</p>
+<ul>
+<li><code>trqpEcosystemid</code>: An ecosystem identifier as defined by TRQP.</li>
+<li><code>trqpAuthorizationId</code>: One of the defined authorization types defined by TRQP.</li>
+<li><code>trqpTime</code>: A timestamp in RFC3339 UTC format indicating when to evaluate the TRQP query.</li>
+</ul>
+<p>DID Resolution Metadata properties:</p>
+<ul>
+<li><code>trqpAuthorizationStatus</code>: One of the authorization status codes defined by TRQP. Possible values are: <code>authorized</code>, <code>not-authorized</code>, <code>revoked</code>, <code>unknown-subject</code>, <code>error</code>.</li>
+</ul>
+<h4 id="example-request-6"><a class="toc-anchor" href="#example-request-6" >§</a> Example Request</h4>
+<pre><code>https://&lt;did-resolver&gt;/identifiers/did:web:danubetech.com?trqpEcosystemid=ecosystemA&amp;trqpAuthorizationId=DriversLicenseIssuer&quot;
+</code></pre>
+<h4 id="example-response-10"><a class="toc-anchor" href="#example-response-10" >§</a> Example Response</h4>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"@context"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"https://www.w3.org/ns/did/v1"</span><span class="token punctuation">,</span>
+            <span class="token string">"https://w3id.org/security/suites/jws-2020/v1"</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com"</span><span class="token punctuation">,</span>
+        <span class="token property">"service"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com#godiddy-docs-apis"</span><span class="token punctuation">,</span>
+                <span class="token property">"serviceEndpoint"</span><span class="token operator">:</span> <span class="token string">"https://docs.godiddy.com/en/apis/"</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com#github"</span><span class="token punctuation">,</span>
+                <span class="token property">"serviceEndpoint"</span><span class="token operator">:</span> <span class="token string">"https://github.com/danubetech/"</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"verificationMethod"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com#key-1"</span><span class="token punctuation">,</span>
+                <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"JsonWebKey2020"</span><span class="token punctuation">,</span>
+                <span class="token property">"controller"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com"</span><span class="token punctuation">,</span>
+                <span class="token property">"publicKeyJwk"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">"kty"</span><span class="token operator">:</span> <span class="token string">"EC"</span><span class="token punctuation">,</span>
+                    <span class="token property">"crv"</span><span class="token operator">:</span> <span class="token string">"P-384"</span><span class="token punctuation">,</span>
+                    <span class="token property">"x"</span><span class="token operator">:</span> <span class="token string">"68CilmUEdVWmxJrFOKdTNYaMPJayWkoTGP03qe_WErehZPu4XKhw2qxgpNZ2vBG7"</span><span class="token punctuation">,</span>
+                    <span class="token property">"y"</span><span class="token operator">:</span> <span class="token string">"4IQgfsVSw0OrYprQNJYCHC3RYGtgC87rQtQrMNVZAricEDw78F7Qq9uJ3wMXj5LG"</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"assertionMethod"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"did:web:danubetech.com#key-1"</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"authentication"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"did:web:danubetech.com#key-1"</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"trqpAuthorizationStatus"</span><span class="token operator">:</span> <span class="token string">"not-authorized"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="train"><a class="toc-anchor" href="#train" >§</a> TRAIN</h3>
+<p>For <a path-0="www.hci.iao.fraunhofer.de"path-1="de"path-2="identity-management"path-3="identity-und-accessmanagement"path-4="TRAIN.html"href="https://www.hci.iao.fraunhofer.de/de/identity-management/identity-und-accessmanagement/TRAIN.html" >TRAIN</a> (TRQP), this section
+defines the following <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-metadata-metadata"href="https://www.w3.org/TR/did-resolution/#did-metadata-metadata" >DID Parameters</a> and
+<a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-resolution-metadata"href="https://www.w3.org/TR/did-resolution/#did-resolution-metadata" >DID Resolution Metadata properties</a>:</p>
+<p>DID Parameters:</p>
+<ul>
+<li><code>trainTrustSchemePointers</code></li>
+</ul>
+<p>DID Resolution Metadata properties:</p>
+<ul>
+<li><code>trainVerificationStatus</code>: Result of the TRAIN trust verification process. Possible values are: <code>OK</code>, <code>FAILED</code>.</li>
+<li><code>trainVerificationResult</code>: Additional properties about the TRAIN trust verification process.</li>
+</ul>
+<h4 id="example-request-7"><a class="toc-anchor" href="#example-request-7" >§</a> Example Request</h4>
+<pre><code>https://&lt;did-resolver&gt;/identifiers/did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80?trainTrustSchemePointers=example.federation1.de&quot;
+</code></pre>
+<h4 id="example-response-11"><a class="toc-anchor" href="#example-response-11" >§</a> Example Response</h4>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"@context"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"https://www.w3.org/ns/did/v1"</span><span class="token punctuation">,</span>
+      <span class="token string">"https://w3id.org/security/suites/ed25519-2018/v1"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80"</span><span class="token punctuation">,</span>
+    <span class="token property">"controller"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"verificationMethod"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80#key-1"</span><span class="token punctuation">,</span>
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"Ed25519VerificationKey2018"</span><span class="token punctuation">,</span>
+        <span class="token property">"controller"</span><span class="token operator">:</span> <span class="token string">"did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80"</span><span class="token punctuation">,</span>
+        <span class="token property">"publicKeyBase58"</span><span class="token operator">:</span> <span class="token string">"4WKYEuGoVAsGPwWWwK95fKH3CBb9RWnc2fDw6Ea1vzA2"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"authentication"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"did:cheqd:testnet:975f1941-9313-41d4-ac8b-88fedda7ce80#key-1"</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"trainVerificationStatus"</span><span class="token operator">:</span> <span class="token string">"OK"</span><span class="token punctuation">,</span>
+    <span class="token property">"trainVerificationResult"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"FindingCorrespondingTrustSchemeInitiated"</span><span class="token operator">:</span> <span class="token string">"OK"</span><span class="token punctuation">,</span>
+      <span class="token property">"TrustListDiscoveryInitiated"</span><span class="token operator">:</span> <span class="token string">"OK"</span><span class="token punctuation">,</span>
+      <span class="token property">"FoundIssuer"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
+      <span class="token property">"VerifyIssuer"</span><span class="token operator">:</span> <span class="token string">"OK"</span><span class="token punctuation">,</span>
+      <span class="token property">"VerificationSuccessful"</span><span class="token operator">:</span> <span class="token string">"OK"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h3 id="ebsi"><a class="toc-anchor" href="#ebsi" >§</a> EBSI</h3>
-<p>For the European Blockchain Service Infrastructure (EBSI), this section defines the following
-<a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-metadata-metadata"href="https://www.w3.org/TR/did-resolution/#did-metadata-metadata" >DID Document Metadata properties</a>:</p>
+<p>For the <a path-0="hub.ebsi.eu"path-1="vc-framework"path-2="trust-model"href="https://hub.ebsi.eu/vc-framework/trust-model" >European Blockchain Service Infrastructure</a> (EBSI), this section
+defines the following <a path-0="www.w3.org"path-1="TR"path-2="did-resolution"path-3="#did-metadata-metadata"href="https://www.w3.org/TR/did-resolution/#did-metadata-metadata" >DID Document Metadata properties</a>:</p>
+<p>DID Document Metadata properties:</p>
 <ul>
 <li><code>issuerType</code>: Possible values: <code>TI</code>, <code>TAO</code>, <code>RootTAO</code></li>
 <li><code>trustChain</code>:
@@ -358,10 +480,10 @@ trust relationships as part of the <a path-0="www.w3.org"path-1="TR"path-2="did-
 </ul>
 </li>
 </ul>
-<h4 id="example-request-6"><a class="toc-anchor" href="#example-request-6" >§</a> Example Request</h4>
-<pre><code>https://&lt;did-resolver&gt;/identifiers/did:web:danubetech.com:did:test4?verifyDnsBridge=error&quot;
+<h4 id="example-request-8"><a class="toc-anchor" href="#example-request-8" >§</a> Example Request</h4>
+<pre><code>https://&lt;did-resolver&gt;/identifiers/did:ebsi:zxE9ucTwx5V7Aean5Kj6Lz3&quot;
 </code></pre>
-<h4 id="example-response-10"><a class="toc-anchor" href="#example-response-10" >§</a> Example Response</h4>
+<h4 id="example-response-12"><a class="toc-anchor" href="#example-response-12" >§</a> Example Response</h4>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
     <span class="token property">"@context"</span><span class="token operator">:</span> <span class="token string">"https://w3id.org/did-resolution/v1"</span><span class="token punctuation">,</span>
     <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -405,7 +527,7 @@ trust relationships as part of the <a path-0="www.w3.org"path-1="TR"path-2="did-
             <span class="token string">"did:ebsi:zxE9ucTwx5V7Aean5Kj6Lz3#lEvEATg9BM78yHKXsyBG_rNdJ2yrKJka9pPK-DTmfqc"</span>
         <span class="token punctuation">]</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+    <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
         <span class="token property">"issuerType"</span><span class="token operator">:</span> <span class="token string">"TAO"</span><span class="token punctuation">,</span>
         <span class="token property">"trustChain"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -456,10 +578,14 @@ trust relationships as part of the <a path-0="www.w3.org"path-1="TR"path-2="did-
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h2 id="intercepting-did-resolution-operations"><a class="toc-anchor" href="#intercepting-did-resolution-operations" >§</a> Intercepting DID Resolution Operations</h2>
+<p>This section defines an architecture that allows a DID Resolver to invoke an external service (via a webhook-like
+endpoint), which can effectively “intercept” a DID Resolution operation, for purposes of logging, caching, analysis,
+policy enforcement, augmentation of the DID Resolution Result, or similar purposes.</p>
 <h2 id="references"><a class="toc-anchor" href="#references" >§</a> References</h2>
 <p>[[spec]]</p>
 <h2 id="acknowledgements"><a class="toc-anchor" href="#acknowledgements" >§</a> Acknowledgements</h2>
-<img align="left" src="images/logo-cyberstand.svg" width="115">
+<img align="left" src="images/logo-cyberstand.png" width="115">
 <p>Supported by <a path-0="cyberstand.eu"path-1=""href="https://cyberstand.eu/" >Cyberstand.eu</a>, which is made possible with financial support from the European Commission.</p>
 <h2 id="appendix"><a class="toc-anchor" href="#appendix" >§</a> Appendix</h2>
 <h3 id="other-resources"><a class="toc-anchor" href="#other-resources" >§</a> Other Resources</h3>
@@ -494,7 +620,7 @@ trust relationships as part of the <a path-0="www.w3.org"path-1="TR"path-2="did-
 <li><a href="#abstract" >Abstract</a></li>
 <li><a href="#status-of-this-document" >Status of This Document</a></li>
 <li><a href="#terminology" >Terminology</a></li>
-<li><a href="#validity-of-the-did-document" >Validity of the DID document</a>
+<li><a href="#did-document-validity" >DID Document Validity</a>
 <ul>
 <li><a href="#did-parameter-checkvaliddiddocument" >DID Parameter: <code>checkValidDidDocument</code></a>
 <ul>
@@ -504,7 +630,7 @@ trust relationships as part of the <a path-0="www.w3.org"path-1="TR"path-2="did-
 </li>
 </ul>
 </li>
-<li><a href="#allow-and-deny-list-policies" >Allow- and deny-list policies</a>
+<li><a href="#did-document-policies" >DID Document Policies</a>
 <ul>
 <li><a href="#did-parameter-checkmethod" >DID Parameter: <code>checkMethod</code></a>
 <ul>
@@ -523,7 +649,7 @@ trust relationships as part of the <a path-0="www.w3.org"path-1="TR"path-2="did-
 </li>
 </ul>
 </li>
-<li><a href="#cryptographic-aspects-of-the-did-document" >Cryptographic aspects of the DID document</a>
+<li><a href="#did-document-key-security" >DID Document Key Security</a>
 <ul>
 <li><a href="#did-parameter-checklocalderivedkey" >DID Parameter: <code>checkLocalDerivedKey</code></a>
 <ul>
@@ -562,18 +688,29 @@ trust relationships as part of the <a path-0="www.w3.org"path-1="TR"path-2="did-
 </li>
 </ul>
 </li>
-<li><a href="#intercepting-did-resolution-operations" >Intercepting DID Resolution Operations</a></li>
 <li><a href="#querying-trust-registries" >Querying Trust Registries</a>
 <ul>
-<li><a href="#trqp" >TRQP</a></li>
-<li><a href="#ebsi" >EBSI</a>
+<li><a href="#trqp" >TRQP</a>
 <ul>
 <li><a href="#example-request-6" >Example Request</a></li>
 <li><a href="#example-response-10" >Example Response</a></li>
 </ul>
 </li>
+<li><a href="#train" >TRAIN</a>
+<ul>
+<li><a href="#example-request-7" >Example Request</a></li>
+<li><a href="#example-response-11" >Example Response</a></li>
 </ul>
 </li>
+<li><a href="#ebsi" >EBSI</a>
+<ul>
+<li><a href="#example-request-8" >Example Request</a></li>
+<li><a href="#example-response-12" >Example Response</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#intercepting-did-resolution-operations" >Intercepting DID Resolution Operations</a></li>
 <li><a href="#references" >References</a></li>
 <li><a href="#acknowledgements" >Acknowledgements</a></li>
 <li><a href="#appendix" >Appendix</a>
