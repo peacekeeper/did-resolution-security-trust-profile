@@ -4,7 +4,7 @@ DID Resolution Security and Trust Profile
 **Specification Status:** [Draft](https://github.com/decentralized-identity/org/blob/master/work-item-lifecycle.md)
 
 **Latest Draft:**
-  [identity.foundation/did-resolution-security-trust-profile](https://identity.foundation/did-resolution-security-trust-profile)
+  [https://peacekeeper.github.io/did-resolution-security-trust-profile/](https://peacekeeper.github.io/did-resolution-security-trust-profile/)
 
 **Editors:**
 ~ [Markus Sabadello](https://www.linkedin.com/in/markus-sabadello-353a0821/) (Danube Tech)
