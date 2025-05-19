@@ -304,35 +304,35 @@ and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code
 <pre><code>https://&lt;did-resolver&gt;/identifiers/did:web:danubetech.com:did:test4?verifyDnsBridge=error&quot;
 </code></pre>
 <h4 id="example-did-document-2"><a class="toc-anchor" href="#example-did-document-2" >§</a> Example DID Document</h4>
-<pre><code>{
-    &quot;@context&quot;: [
-        &quot;https://www.w3.org/ns/did/v1&quot;,
-        &quot;https://w3id.org/security/suites/jws-2020/v1&quot;,
-        {
-            &quot;x509CertificateChain&quot;: &quot;https://w3id.org/security#x509CertificateChain&quot;
-        }
-    ],
-    &quot;id&quot;: &quot;did:web:danubetech.com:did:test4&quot;,
-    &quot;verificationMethod&quot;: [
-        {
-            &quot;id&quot;: &quot;did:web:danubetech.com:did:test4#key-1&quot;,
-            &quot;type&quot;: &quot;EcdsaSecp384r1VerificationKey2019&quot;,
-            &quot;controller&quot;: &quot;did:web:danubetech.com:did:test4&quot;,
-            &quot;publicKeyMultibase&quot;: &quot;z7B4TwhJKG6mnuybT2M15rSSRMARfMKp452YYmRph2qS7CdWei3SfF9huhSnqnoxYgoEANMPog4Dkod5oo6grXAU6hMPggKSWP5WDLWHK6bvbboh2M54j4XEUvUCCXGEh95rQ&quot;,
-            &quot;x509CertificateChain&quot;: [
-                &quot;MIIBuzCCAUCgAwIBAgICEAEwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPSW50ZXJt\nZWRpYXRlLUNBMB4XDTI0MTAyNjE5NTg0M1oXDTI1MTAyNjE5NTg0M1owMTEvMC0G\nA1UEAwwmZGlkOndlYjpkYW51YmV0ZWNoLmNvbTpkaWQ6dGVzdDQja2V5LTEwdjAQ\nBgcqhkjOPQIBBgUrgQQAIgNiAAQPb7s7JTrvooZ3X8AYcRZDpVxrsWeVgq63KTvd\nJYz7C/T6kpAjOnaCLfLv/bJSkINXTpSI3T9BZ6UapfNh891zzxQelZL6OolI+CPU\nK3TXGCI2eCzHTqcrsCs1e5g7mmGjQjBAMB0GA1UdDgQWBBTBXZ7pDVp09aqYOyqJ\nKdTtRtpajDAfBgNVHSMEGDAWgBQZ1BR4a4uQDKsqcs7ZLPuZDeNYqDAKBggqhkjO\nPQQDAgNpADBmAjEAwjaf5uOitXSd2Jk+TIxuePHXVIcOPDvlIhP0LMNbY2mumDZT\nAAYI4QKpyd/aiWSZAjEAtAn8HLEvTU+B7Fu/zzphqe1QVEkSLbnTW/HDgZRUBOui\nQEF38w33IZaG5SkpJiQz\n&quot;,
-                &quot;MIIBqDCCAS+gAwIBAgICEAAwCgYIKoZIzj0EAwIwEjEQMA4GA1UEAwwHUm9vdC1D\nQTAeFw0yNDEwMjYxOTU4MzlaFw0yNTEwMjYxOTU4MzlaMBoxGDAWBgNVBAMMD0lu\ndGVybWVkaWF0ZS1DQTB2MBAGByqGSM49AgEGBSuBBAAiA2IABFtPSi8sEDi/Y4R2\n90JHC5IX/JYwnJZ3sDP5OtOS+PUQDwyMO9Ge0I6//JSDORqxV/EfKSkGSILs1OtW\nnRuJyy+PLwMMhR3OfjZ+WzWRNY1Na5pVZUwGQqfYCjf9iOTTo6NQME4wDAYDVR0T\nBAUwAwEB/zAdBgNVHQ4EFgQUGdQUeGuLkAyrKnLO2Sz7mQ3jWKgwHwYDVR0jBBgw\nFoAUqIddikSUeLEqHBgtUfwGsj2kzz8wCgYIKoZIzj0EAwIDZwAwZAIwEZSRdzSC\nbYtmA1cV1y4CaLjpIDT8RgD1IbhHsvgKud87wc/FkMv0AUSnHfmAntPgAjAc7GGO\n2GV1wm6U2uckCKYtY/KzWYJ0W7xdW64b4DvvREbgixD5B2gv+VFV3XEh6SQ=\n&quot;,
-                &quot;MIIBkjCCARigAwIBAgIUbtyxzwCCX8ncASrGWZkaW1VEZGgwCgYIKoZIzj0EAwIw\nEjEQMA4GA1UEAwwHUm9vdC1DQTAeFw0yNDEwMjYxOTU4MzZaFw0zNDEwMjQxOTU4\nMzZaMBIxEDAOBgNVBAMMB1Jvb3QtQ0EwdjAQBgcqhkjOPQIBBgUrgQQAIgNiAAT3\nxAcQwZqqtqCBQhRHfBHE8iZsu7GWvsNltWa0ZZu3mvTHeet8IaOH40tTjGMeKLrL\nd8Yhskk7t17gsT1FHDdA3AoDqfgOsyFM1OzDCSlAgVAWjU0p8RP/FvpattQauPSj\nLzAtMAwGA1UdEwQFMAMBAf8wHQYDVR0OBBYEFKiHXYpElHixKhwYLVH8BrI9pM8/\nMAoGCCqGSM49BAMCA2gAMGUCMQDJ6/2jcUw2lWdmiBLjltVv83kLGky6YpPwJT47\nbSrOEueUs+L36xaOs4dtPwdvD1ECMDs6qBv73EZ6vDJ0PVMeLfbBRek2MNDO7U1I\nRpeRBU/sV9vWw4qr2APlYOYcObhyng==\n&quot;
-            ]
-        }
-    ],
-    &quot;assertionMethod&quot;: [
-        &quot;did:web:danubetech.com:did:test4#key-1&quot;
-    ],
-    &quot;authentication&quot;: [
-        &quot;did:web:danubetech.com:did:test4#key-1&quot;
-    ]
-}
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"@context"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"https://www.w3.org/ns/did/v1"</span><span class="token punctuation">,</span>
+        <span class="token string">"https://w3id.org/security/suites/jws-2020/v1"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"x509CertificateChain"</span><span class="token operator">:</span> <span class="token string">"https://w3id.org/security#x509CertificateChain"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com:did:test4"</span><span class="token punctuation">,</span>
+    <span class="token property">"verificationMethod"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com:did:test4#key-1"</span><span class="token punctuation">,</span>
+            <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"EcdsaSecp384r1VerificationKey2019"</span><span class="token punctuation">,</span>
+            <span class="token property">"controller"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com:did:test4"</span><span class="token punctuation">,</span>
+            <span class="token property">"publicKeyMultibase"</span><span class="token operator">:</span> <span class="token string">"z7B4TwhJKG6mnuybT2M15rSSRMARfMKp452YYmRph2qS7CdWei3SfF9huhSnqnoxYgoEANMPog4Dkod5oo6grXAU6hMPggKSWP5WDLWHK6bvbboh2M54j4XEUvUCCXGEh95rQ"</span><span class="token punctuation">,</span>
+            <span class="token property">"x509CertificateChain"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"MIIBuzCCAUCgAwIBAgICEAEwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPSW50ZXJt\nZWRpYXRlLUNBMB4XDTI0MTAyNjE5NTg0M1oXDTI1MTAyNjE5NTg0M1owMTEvMC0G\nA1UEAwwmZGlkOndlYjpkYW51YmV0ZWNoLmNvbTpkaWQ6dGVzdDQja2V5LTEwdjAQ\nBgcqhkjOPQIBBgUrgQQAIgNiAAQPb7s7JTrvooZ3X8AYcRZDpVxrsWeVgq63KTvd\nJYz7C/T6kpAjOnaCLfLv/bJSkINXTpSI3T9BZ6UapfNh891zzxQelZL6OolI+CPU\nK3TXGCI2eCzHTqcrsCs1e5g7mmGjQjBAMB0GA1UdDgQWBBTBXZ7pDVp09aqYOyqJ\nKdTtRtpajDAfBgNVHSMEGDAWgBQZ1BR4a4uQDKsqcs7ZLPuZDeNYqDAKBggqhkjO\nPQQDAgNpADBmAjEAwjaf5uOitXSd2Jk+TIxuePHXVIcOPDvlIhP0LMNbY2mumDZT\nAAYI4QKpyd/aiWSZAjEAtAn8HLEvTU+B7Fu/zzphqe1QVEkSLbnTW/HDgZRUBOui\nQEF38w33IZaG5SkpJiQz\n"</span><span class="token punctuation">,</span>
+                <span class="token string">"MIIBqDCCAS+gAwIBAgICEAAwCgYIKoZIzj0EAwIwEjEQMA4GA1UEAwwHUm9vdC1D\nQTAeFw0yNDEwMjYxOTU4MzlaFw0yNTEwMjYxOTU4MzlaMBoxGDAWBgNVBAMMD0lu\ndGVybWVkaWF0ZS1DQTB2MBAGByqGSM49AgEGBSuBBAAiA2IABFtPSi8sEDi/Y4R2\n90JHC5IX/JYwnJZ3sDP5OtOS+PUQDwyMO9Ge0I6//JSDORqxV/EfKSkGSILs1OtW\nnRuJyy+PLwMMhR3OfjZ+WzWRNY1Na5pVZUwGQqfYCjf9iOTTo6NQME4wDAYDVR0T\nBAUwAwEB/zAdBgNVHQ4EFgQUGdQUeGuLkAyrKnLO2Sz7mQ3jWKgwHwYDVR0jBBgw\nFoAUqIddikSUeLEqHBgtUfwGsj2kzz8wCgYIKoZIzj0EAwIDZwAwZAIwEZSRdzSC\nbYtmA1cV1y4CaLjpIDT8RgD1IbhHsvgKud87wc/FkMv0AUSnHfmAntPgAjAc7GGO\n2GV1wm6U2uckCKYtY/KzWYJ0W7xdW64b4DvvREbgixD5B2gv+VFV3XEh6SQ=\n"</span><span class="token punctuation">,</span>
+                <span class="token string">"MIIBkjCCARigAwIBAgIUbtyxzwCCX8ncASrGWZkaW1VEZGgwCgYIKoZIzj0EAwIw\nEjEQMA4GA1UEAwwHUm9vdC1DQTAeFw0yNDEwMjYxOTU4MzZaFw0zNDEwMjQxOTU4\nMzZaMBIxEDAOBgNVBAMMB1Jvb3QtQ0EwdjAQBgcqhkjOPQIBBgUrgQQAIgNiAAT3\nxAcQwZqqtqCBQhRHfBHE8iZsu7GWvsNltWa0ZZu3mvTHeet8IaOH40tTjGMeKLrL\nd8Yhskk7t17gsT1FHDdA3AoDqfgOsyFM1OzDCSlAgVAWjU0p8RP/FvpattQauPSj\nLzAtMAwGA1UdEwQFMAMBAf8wHQYDVR0OBBYEFKiHXYpElHixKhwYLVH8BrI9pM8/\nMAoGCCqGSM49BAMCA2gAMGUCMQDJ6/2jcUw2lWdmiBLjltVv83kLGky6YpPwJT47\nbSrOEueUs+L36xaOs4dtPwdvD1ECMDs6qBv73EZ6vDJ0PVMeLfbBRek2MNDO7U1I\nRpeRBU/sV9vWw4qr2APlYOYcObhyng==\n"</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"assertionMethod"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"did:web:danubetech.com:did:test4#key-1"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"authentication"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"did:web:danubetech.com:did:test4#key-1"</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h4 id="example-response-9"><a class="toc-anchor" href="#example-response-9" >§</a> Example Response</h4>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>

@@ -324,7 +324,7 @@ https://<did-resolver>/identifiers/did:web:danubetech.com:did:test4?verifyDnsBri
 
 #### Example DID Document
 
-```
+```json
 {
     "@context": [
         "https://www.w3.org/ns/did/v1",
