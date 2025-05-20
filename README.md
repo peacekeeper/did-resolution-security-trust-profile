@@ -6,6 +6,6 @@ Specification of security and trust extensions for DID Resolution
 
 <br clear="left" />
 
-<img align="left" src="images/logo-cyberstand.svg" width="115">
+<img align="left" src="images/logo-cyberstand.png" width="115">
 
 Supported by [Cyberstand.eu](https://cyberstand.eu/), which is made possible with financial support from the European Commission.
