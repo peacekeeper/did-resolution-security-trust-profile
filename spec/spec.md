@@ -84,14 +84,15 @@ https://<did-resolver>/identifiers/<did>?checkValidDidDocument=error"
 {
   "didDocument": null,
   "didResolutionMetadata": {
-    "error": "invalidDidDocument",
-    "errorMessage": "Error invalidDidDocument from resolver: Invalid DID document",
-    "validationProblems": [
-      {
+    "error": {
+      "type": "INVALID_DID_DOCUMENT",
+      "title": "Invalid DID document.",
+      "detail": "Error INVALID_DID_DOCUMENT from resolver: Invalid DID document",
+      "validationProblems": [{
         "value": "id",
         "error": "there must be one 'id' in 'service'"
-      }
-    ]
+      }]
+    }
   },
   "didDocumentMetadata": {}
 }
@@ -115,7 +116,10 @@ The error code `notAllowedMethod` is returned in case of an error.
 {
   "didDocument": null,
   "didResolutionMetadata": {
-    "error": "notAllowedMethod"
+    "error": {
+      "type": "NOT_ALLOWED_METHOD",
+      "title": "This DID method is not allowed."
+    }
   },
   "didDocumentMetadata": {}
 }
@@ -133,7 +137,10 @@ The error code `notAllowedKeyType` is returned in case of an error.
 {
   "didDocument": null,
   "didResolutionMetadata": {
-    "error": "notAllowedKeyType"
+    "error": {
+      "type": "NOT_ALLOWED_KEY_TYPE",
+      "title": "This key type is not allowed."
+    }
   },
   "didDocumentMetadata": {}
 }
@@ -151,7 +158,10 @@ The error code `notAllowedVerificationMethodType` is returned in case of an erro
 {
   "didDocument": null,
   "didResolutionMetadata": {
-    "error": "notAllowedVerificationMethodType"
+    "error": {
+      "type": "NOT_ALLOWED_VERIFICATION_METHOD_TYPE",
+      "title": "This verification method type is not allowed."
+    }
   },
   "didDocumentMetadata": {}
 }
@@ -181,10 +191,13 @@ https://<did-resolver>/identifiers/<did>?checkLocalDerivedKey=error"
 {
   "didDocument": null,
   "didResolutionMetadata": {
-    "error": "notAllowedLocalDerivedKey",
-    "errorMessage": "Error notAllowedLocalDerivedKey from resolver: Not allowed derived local verification methods: did:web:danubetech.com:did:test1#z6LSgCp1mGKMhPZ7VgbNoojE68yG7ubcGj87fBBhco2YP7LP from did:web:danubetech.com:did:test1#z6Mkt4AdazSYghXf69YfaYCms4qcrvwGA3yq7z8AifUzgrQz",
-    "derivedVerificationMethodId": "did:web:danubetech.com:did:test1#z6LSgCp1mGKMhPZ7VgbNoojE68yG7ubcGj87fBBhco2YP7LP",
-    "derivingVerificationMethod": "did:web:danubetech.com:did:test1#z6Mkt4AdazSYghXf69YfaYCms4qcrvwGA3yq7z8AifUzgrQz"
+    "error": {
+      "type": "NOT_ALLOWED_LOCAL_DERIVED_KEY",
+      "title": "Local derived key is not allowed.",
+      "detail": "Error NOT_ALLOWED_LOCAL_DERIVED_KEY from resolver: Not allowed derived local verification methods: did:web:danubetech.com:did:test1#z6LSgCp1mGKMhPZ7VgbNoojE68yG7ubcGj87fBBhco2YP7LP from did:web:danubetech.com:did:test1#z6Mkt4AdazSYghXf69YfaYCms4qcrvwGA3yq7z8AifUzgrQz",
+      "derivedVerificationMethodId": "did:web:danubetech.com:did:test1#z6LSgCp1mGKMhPZ7VgbNoojE68yG7ubcGj87fBBhco2YP7LP",
+      "derivingVerificationMethod": "did:web:danubetech.com:did:test1#z6Mkt4AdazSYghXf69YfaYCms4qcrvwGA3yq7z8AifUzgrQz"
+    }
   },
   "didDocumentMetadata": {}
 }
@@ -208,12 +221,15 @@ https://<did-resolver>/identifiers/<did>?checkLocalDuplicateKey=error"
 {
   "didDocument": null,
   "didResolutionMetadata": {
-    "error": "notAllowedLocalDuplicateKey",
-    "errorMessage": "Error notAllowedLocalDuplicateKey from resolver: Not allowed duplicate local verification methods: did:web:danubetech.com:did:test2#key-2 and did:web:danubetech.com:did:test2#key-1",
-    "duplicateLocalVerificationMethods": [
-      "did:web:danubetech.com:did:test2#key-1",
-      "did:web:danubetech.com:did:test2#key-2"
-    ]
+    "error": {
+      "type": "NOT_ALLOWED_LOCAL_DUPLICATE_KEY",
+      "title": "Local duplicate key is not allowed.",
+      "detail": "Error NOT_ALLOWED_LOCAL_DUPLICATE_KEY from resolver: Not allowed duplicate local verification methods: did:web:danubetech.com:did:test2#key-2 and did:web:danubetech.com:did:test2#key-1",
+      "duplicateLocalVerificationMethods": [
+        "did:web:danubetech.com:did:test2#key-1",
+        "did:web:danubetech.com:did:test2#key-2"
+      ]
+    }
   },
   "didDocumentMetadata": {}
 }
@@ -231,7 +247,11 @@ The error code `notAllowedGlobalDuplicateKey` is returned in case of an error.
 {
   "didDocument": null,
   "didResolutionMetadata": {
-    "error": "notAllowedGlobalDuplicateKey"
+    "error": {
+      "type": "NOT_ALLOWED_GLOBAL_DUPLICATED_KEY",
+      "title": "Global duplicate key is not allowed.",
+      "detail": "Error NOT_ALLOWED_GLOBAL_DUPLICATE_KEY from resolver: Not allowed duplicate global verification methods."
+    }
   },
   "didDocumentMetadata": {}
 }
@@ -297,12 +317,15 @@ https://<did-resolver>/identifiers/did:web:danubetech.com:did:test7?verifyDnsBri
 {
     "didDocument": null,
     "didResolutionMetadata": {
-        "error": "unverifiableDnsBridge",
-        "errorMessage": "Error unverifiableDnsBridge from resolver: DID did:web:danubetech.com:did:test7 not found in DNS URI records for domain name rdapregistrygroup1.trustregistry.nborbit.ca.",
+      "error": {
+        "type": "UNVERIFIABLE_DID_DNS_BRIDGE",
+        "title": "Unverifiable DID-DNS bridge.",
+        "detail": "Error UNVERIFIABLE_DID_DNS_BRIDGE from resolver: DID did:web:danubetech.com:did:test7 not found in DNS URI records for domain name rdapregistrygroup1.trustregistry.nborbit.ca.",
         "domainName": "rdapregistrygroup1.trustregistry.nborbit.ca",
         "uriRecordTargets": [
-            "did:web:rdapregistrygroup1.trustregistry.nborbit.ca"
+          "did:web:rdapregistrygroup1.trustregistry.nborbit.ca"
         ]
+      }
     },
     "didDocumentMetadata": {}
 }
@@ -319,7 +342,7 @@ The error code `unverifiableCertificateBridge` is returned in case of an error.
 #### Example Request
 
 ```
-https://<did-resolver>/identifiers/did:web:danubetech.com:did:test4?verifyDnsBridge=error"
+https://<did-resolver>/identifiers/did:web:danubetech.com:did:test4?verifyCertificateBridge=error"
 ```
 
 #### Example DID Document
@@ -362,10 +385,13 @@ https://<did-resolver>/identifiers/did:web:danubetech.com:did:test4?verifyDnsBri
 {
   "didDocument": null,
   "didResolutionMetadata": {
-    "error": "unverifiableCertificateBridge",
-    "errorMessage": "Error notAllowedCertificate from resolver: Verification method's public key does not match certificate",
-    "verificationMethod": "did:web:danubetech.com:did:test4#key-1",
-    "certificate": "4097"
+    "error": {
+      "type": "UNVERIFIABLE_DID_CERTIFICATE_BRIDGE",
+      "title": "Unverifiable DID-CERTIFICATE bridge.",
+      "detail": "Error UNVERIFIABLE_DID_CERTIFICATE_BRIDGE from resolver: Verification method's public key does not match certificate.",
+      "verificationMethod": "did:web:danubetech.com:did:test4#key-1",
+      "certificate": "4097"
+    }
   },
   "didDocumentMetadata": {}
 }

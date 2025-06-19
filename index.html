@@ -133,14 +133,15 @@ related to validity of the DID document.</p>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
   <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"invalidDidDocument"</span><span class="token punctuation">,</span>
-    <span class="token property">"errorMessage"</span><span class="token operator">:</span> <span class="token string">"Error invalidDidDocument from resolver: Invalid DID document"</span><span class="token punctuation">,</span>
-    <span class="token property">"validationProblems"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-      <span class="token punctuation">{</span>
+    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"INVALID_DID_DOCUMENT"</span><span class="token punctuation">,</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Invalid DID document."</span><span class="token punctuation">,</span>
+      <span class="token property">"detail"</span><span class="token operator">:</span> <span class="token string">"Error INVALID_DID_DOCUMENT from resolver: Invalid DID document"</span><span class="token punctuation">,</span>
+      <span class="token property">"validationProblems"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
         <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"id"</span><span class="token punctuation">,</span>
         <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"there must be one 'id' in 'service'"</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -156,7 +157,10 @@ related to policies about the DID and DID document, using allow-lists and deny-l
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
   <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"notAllowedMethod"</span>
+    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"NOT_ALLOWED_METHOD"</span><span class="token punctuation">,</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"This DID method is not allowed."</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -168,7 +172,10 @@ related to policies about the DID and DID document, using allow-lists and deny-l
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
   <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"notAllowedKeyType"</span>
+    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"NOT_ALLOWED_KEY_TYPE"</span><span class="token punctuation">,</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"This key type is not allowed."</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -180,7 +187,10 @@ related to policies about the DID and DID document, using allow-lists and deny-l
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
   <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"notAllowedVerificationMethodType"</span>
+    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"NOT_ALLOWED_VERIFICATION_METHOD_TYPE"</span><span class="token punctuation">,</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"This verification method type is not allowed."</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -199,10 +209,13 @@ related to security aspects of the cryptographic keys found in the DID document.
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
   <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"notAllowedLocalDerivedKey"</span><span class="token punctuation">,</span>
-    <span class="token property">"errorMessage"</span><span class="token operator">:</span> <span class="token string">"Error notAllowedLocalDerivedKey from resolver: Not allowed derived local verification methods: did:web:danubetech.com:did:test1#z6LSgCp1mGKMhPZ7VgbNoojE68yG7ubcGj87fBBhco2YP7LP from did:web:danubetech.com:did:test1#z6Mkt4AdazSYghXf69YfaYCms4qcrvwGA3yq7z8AifUzgrQz"</span><span class="token punctuation">,</span>
-    <span class="token property">"derivedVerificationMethodId"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com:did:test1#z6LSgCp1mGKMhPZ7VgbNoojE68yG7ubcGj87fBBhco2YP7LP"</span><span class="token punctuation">,</span>
-    <span class="token property">"derivingVerificationMethod"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com:did:test1#z6Mkt4AdazSYghXf69YfaYCms4qcrvwGA3yq7z8AifUzgrQz"</span>
+    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"NOT_ALLOWED_LOCAL_DERIVED_KEY"</span><span class="token punctuation">,</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Local derived key is not allowed."</span><span class="token punctuation">,</span>
+      <span class="token property">"detail"</span><span class="token operator">:</span> <span class="token string">"Error NOT_ALLOWED_LOCAL_DERIVED_KEY from resolver: Not allowed derived local verification methods: did:web:danubetech.com:did:test1#z6LSgCp1mGKMhPZ7VgbNoojE68yG7ubcGj87fBBhco2YP7LP from did:web:danubetech.com:did:test1#z6Mkt4AdazSYghXf69YfaYCms4qcrvwGA3yq7z8AifUzgrQz"</span><span class="token punctuation">,</span>
+      <span class="token property">"derivedVerificationMethodId"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com:did:test1#z6LSgCp1mGKMhPZ7VgbNoojE68yG7ubcGj87fBBhco2YP7LP"</span><span class="token punctuation">,</span>
+      <span class="token property">"derivingVerificationMethod"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com:did:test1#z6Mkt4AdazSYghXf69YfaYCms4qcrvwGA3yq7z8AifUzgrQz"</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -217,12 +230,15 @@ related to security aspects of the cryptographic keys found in the DID document.
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
   <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"notAllowedLocalDuplicateKey"</span><span class="token punctuation">,</span>
-    <span class="token property">"errorMessage"</span><span class="token operator">:</span> <span class="token string">"Error notAllowedLocalDuplicateKey from resolver: Not allowed duplicate local verification methods: did:web:danubetech.com:did:test2#key-2 and did:web:danubetech.com:did:test2#key-1"</span><span class="token punctuation">,</span>
-    <span class="token property">"duplicateLocalVerificationMethods"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-      <span class="token string">"did:web:danubetech.com:did:test2#key-1"</span><span class="token punctuation">,</span>
-      <span class="token string">"did:web:danubetech.com:did:test2#key-2"</span>
-    <span class="token punctuation">]</span>
+    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"NOT_ALLOWED_LOCAL_DUPLICATE_KEY"</span><span class="token punctuation">,</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Local duplicate key is not allowed."</span><span class="token punctuation">,</span>
+      <span class="token property">"detail"</span><span class="token operator">:</span> <span class="token string">"Error NOT_ALLOWED_LOCAL_DUPLICATE_KEY from resolver: Not allowed duplicate local verification methods: did:web:danubetech.com:did:test2#key-2 and did:web:danubetech.com:did:test2#key-1"</span><span class="token punctuation">,</span>
+      <span class="token property">"duplicateLocalVerificationMethods"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"did:web:danubetech.com:did:test2#key-1"</span><span class="token punctuation">,</span>
+        <span class="token string">"did:web:danubetech.com:did:test2#key-2"</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -234,7 +250,11 @@ related to security aspects of the cryptographic keys found in the DID document.
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
   <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"notAllowedGlobalDuplicateKey"</span>
+    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"NOT_ALLOWED_GLOBAL_DUPLICATED_KEY"</span><span class="token punctuation">,</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Global duplicate key is not allowed."</span><span class="token punctuation">,</span>
+      <span class="token property">"detail"</span><span class="token operator">:</span> <span class="token string">"Error NOT_ALLOWED_GLOBAL_DUPLICATE_KEY from resolver: Not allowed duplicate global verification methods."</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -285,12 +305,15 @@ Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.<
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
     <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
     <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"unverifiableDnsBridge"</span><span class="token punctuation">,</span>
-        <span class="token property">"errorMessage"</span><span class="token operator">:</span> <span class="token string">"Error unverifiableDnsBridge from resolver: DID did:web:danubetech.com:did:test7 not found in DNS URI records for domain name rdapregistrygroup1.trustregistry.nborbit.ca."</span><span class="token punctuation">,</span>
+      <span class="token property">"error"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"UNVERIFIABLE_DID_DNS_BRIDGE"</span><span class="token punctuation">,</span>
+        <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Unverifiable DID-DNS bridge."</span><span class="token punctuation">,</span>
+        <span class="token property">"detail"</span><span class="token operator">:</span> <span class="token string">"Error UNVERIFIABLE_DID_DNS_BRIDGE from resolver: DID did:web:danubetech.com:did:test7 not found in DNS URI records for domain name rdapregistrygroup1.trustregistry.nborbit.ca."</span><span class="token punctuation">,</span>
         <span class="token property">"domainName"</span><span class="token operator">:</span> <span class="token string">"rdapregistrygroup1.trustregistry.nborbit.ca"</span><span class="token punctuation">,</span>
         <span class="token property">"uriRecordTargets"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-            <span class="token string">"did:web:rdapregistrygroup1.trustregistry.nborbit.ca"</span>
+          <span class="token string">"did:web:rdapregistrygroup1.trustregistry.nborbit.ca"</span>
         <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -301,7 +324,7 @@ certificate authority, according to the <a path-0="github.com"path-1="CIRALabs"p
 and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code>error</code>.</p>
 <p>The error code <code>unverifiableCertificateBridge</code> is returned in case of an error.</p>
 <h4 id="example-request-5"><a class="toc-anchor" href="#example-request-5" >§</a> Example Request</h4>
-<pre><code>https://&lt;did-resolver&gt;/identifiers/did:web:danubetech.com:did:test4?verifyDnsBridge=error&quot;
+<pre><code>https://&lt;did-resolver&gt;/identifiers/did:web:danubetech.com:did:test4?verifyCertificateBridge=error&quot;
 </code></pre>
 <h4 id="example-did-document-2"><a class="toc-anchor" href="#example-did-document-2" >§</a> Example DID Document</h4>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
@@ -338,10 +361,13 @@ and deny-list. Possible values are <code>ignore</code>, <code>warn</code>, <code
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"didDocument"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
   <span class="token property">"didResolutionMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"unverifiableCertificateBridge"</span><span class="token punctuation">,</span>
-    <span class="token property">"errorMessage"</span><span class="token operator">:</span> <span class="token string">"Error notAllowedCertificate from resolver: Verification method's public key does not match certificate"</span><span class="token punctuation">,</span>
-    <span class="token property">"verificationMethod"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com:did:test4#key-1"</span><span class="token punctuation">,</span>
-    <span class="token property">"certificate"</span><span class="token operator">:</span> <span class="token string">"4097"</span>
+    <span class="token property">"error"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"UNVERIFIABLE_DID_CERTIFICATE_BRIDGE"</span><span class="token punctuation">,</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"Unverifiable DID-CERTIFICATE bridge."</span><span class="token punctuation">,</span>
+      <span class="token property">"detail"</span><span class="token operator">:</span> <span class="token string">"Error UNVERIFIABLE_DID_CERTIFICATE_BRIDGE from resolver: Verification method's public key does not match certificate."</span><span class="token punctuation">,</span>
+      <span class="token property">"verificationMethod"</span><span class="token operator">:</span> <span class="token string">"did:web:danubetech.com:did:test4#key-1"</span><span class="token punctuation">,</span>
+      <span class="token property">"certificate"</span><span class="token operator">:</span> <span class="token string">"4097"</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token property">"didDocumentMetadata"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
