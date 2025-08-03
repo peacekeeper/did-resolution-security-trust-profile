@@ -70,7 +70,7 @@ related to validity of the DID document.
 
 This DID Parameter is used to check if a resolved DID document is valid, i.e. conformant with the [DID](https://www.w3.org/TR/did-1.1/) data model. Possible values are `ignore`, `warn`, `error`.
 
-The error code `invalidDidDocument` is returned in case of an error.
+The error code `INVALID_DID_DOCUMENT` is returned in case of an error.
 
 #### Example Request
 
@@ -108,7 +108,7 @@ related to policies about the DID and DID document, using allow-lists and deny-l
 
 This DID Parameter is used to check if the DID method is not allowed, based on an allow-list and deny-list. Possible values are `ignore`, `warn`, `error`.
 
-The error code `notAllowedMethod` is returned in case of an error.
+The error code `NOT_ALLOWED_METHOD` is returned in case of an error.
 
 #### Example Response
 
@@ -118,7 +118,8 @@ The error code `notAllowedMethod` is returned in case of an error.
   "didResolutionMetadata": {
     "error": {
       "type": "NOT_ALLOWED_METHOD",
-      "title": "This DID method is not allowed."
+      "title": "This DID method is not allowed by policy.",
+      "detail": "Not allowed method: example"
     }
   },
   "didDocumentMetadata": {}
@@ -129,7 +130,7 @@ The error code `notAllowedMethod` is returned in case of an error.
 
 This DID Parameter is used to check if the DID document contains a key type that is not allowed, based on an allow-list and deny-list. Possible values are `ignore`, `warn`, `error`.
 
-The error code `notAllowedKeyType` is returned in case of an error.
+The error code `NOT_ALLOWED_KEY_TYPE` is returned in case of an error.
 
 #### Example Response
 
@@ -139,7 +140,8 @@ The error code `notAllowedKeyType` is returned in case of an error.
   "didResolutionMetadata": {
     "error": {
       "type": "NOT_ALLOWED_KEY_TYPE",
-      "title": "This key type is not allowed."
+      "title": "This key type is not allowed by policy.",
+      "detail": "Not allowed key type: Ed25519"
     }
   },
   "didDocumentMetadata": {}
@@ -150,7 +152,7 @@ The error code `notAllowedKeyType` is returned in case of an error.
 
 This DID Parameter is used to check if the DID document contains a verification method with a type that is not allowed, based on an allow-list and deny-list. Possible values are `ignore`, `warn`, `error`.
 
-The error code `notAllowedVerificationMethodType` is returned in case of an error.
+The error code `NOT_ALLOWED_VERIFICATION_METHOD_TYPE` is returned in case of an error.
 
 #### Example Response
 
@@ -160,7 +162,8 @@ The error code `notAllowedVerificationMethodType` is returned in case of an erro
   "didResolutionMetadata": {
     "error": {
       "type": "NOT_ALLOWED_VERIFICATION_METHOD_TYPE",
-      "title": "This verification method type is not allowed."
+      "title": "This verification method type is not allowed by policy.",
+      "detail": "Not allowed verification method type: JsonWebKey2020"
     }
   },
   "didDocumentMetadata": {}
@@ -177,7 +180,7 @@ related to security aspects of the cryptographic keys found in the DID document.
 
 This DID Parameter is used to check if derived keys have been detected in the DID document, e.g. an X25519 key derived from an Ed25519 key. Possible values are `ignore`, `warn`, `error`.
 
-The error code `notAllowedLocalDerivedKey` is returned in case of an error.
+The error code `NOT_ALLOWED_LOCAL_DERIVED_KEY` is returned in case of an error.
 
 #### Example Request
 
@@ -193,10 +196,10 @@ https://<did-resolver>/identifiers/<did>?checkLocalDerivedKey=error"
   "didResolutionMetadata": {
     "error": {
       "type": "NOT_ALLOWED_LOCAL_DERIVED_KEY",
-      "title": "Local derived key is not allowed.",
-      "detail": "Error NOT_ALLOWED_LOCAL_DERIVED_KEY from resolver: Not allowed derived local verification methods: did:web:danubetech.com:did:test1#z6LSgCp1mGKMhPZ7VgbNoojE68yG7ubcGj87fBBhco2YP7LP from did:web:danubetech.com:did:test1#z6Mkt4AdazSYghXf69YfaYCms4qcrvwGA3yq7z8AifUzgrQz",
-      "derivedVerificationMethodId": "did:web:danubetech.com:did:test1#z6LSgCp1mGKMhPZ7VgbNoojE68yG7ubcGj87fBBhco2YP7LP",
-      "derivingVerificationMethod": "did:web:danubetech.com:did:test1#z6Mkt4AdazSYghXf69YfaYCms4qcrvwGA3yq7z8AifUzgrQz"
+      "title": "Derived keys are not allowed by policy.",
+      "detail": "Not allowed derived local verification methods: <did>#<key-1>, <did>#<key-2>",
+      "derivedVerificationMethodId": "<did>#<key-1>",
+      "derivingVerificationMethodId": "<did>#<key-2>"
     }
   },
   "didDocumentMetadata": {}
@@ -207,7 +210,7 @@ https://<did-resolver>/identifiers/<did>?checkLocalDerivedKey=error"
 
 This DID Parameter is used to check if duplicate keys have been detected in the DID document. Possible values are `ignore`, `warn`, `error`.
 
-The error code `notAllowedLocalDuplicateKey` is returned in case of an error.
+The error code `NOT_ALLOWED_LOCAL_DUPLICATE_KEY` is returned in case of an error.
 
 #### Example Request
 
@@ -223,11 +226,11 @@ https://<did-resolver>/identifiers/<did>?checkLocalDuplicateKey=error"
   "didResolutionMetadata": {
     "error": {
       "type": "NOT_ALLOWED_LOCAL_DUPLICATE_KEY",
-      "title": "Local duplicate key is not allowed.",
-      "detail": "Error NOT_ALLOWED_LOCAL_DUPLICATE_KEY from resolver: Not allowed duplicate local verification methods: did:web:danubetech.com:did:test2#key-2 and did:web:danubetech.com:did:test2#key-1",
+      "title": "Duplicate keys are not allowed by policy.",
+      "detail": "Not allowed duplicate local verification methods: <did>#<key-1>, <did>#<key-2>",
       "duplicateLocalVerificationMethods": [
-        "did:web:danubetech.com:did:test2#key-1",
-        "did:web:danubetech.com:did:test2#key-2"
+        "<did>#<key-1>",
+        "<did>#<key-2>"
       ]
     }
   },
@@ -239,7 +242,7 @@ https://<did-resolver>/identifiers/<did>?checkLocalDuplicateKey=error"
 
 This DID Parameter is used to check if duplicate keys have been detected between the DID document and other globally known DID documents. Possible values are `ignore`, `warn`, `error`.
 
-The error code `notAllowedGlobalDuplicateKey` is returned in case of an error.
+The error code `NOT_ALLOWED_GLOBAL_DUPLICATE_KEY` is returned in case of an error.
 
 #### Example Response
 
@@ -248,9 +251,13 @@ The error code `notAllowedGlobalDuplicateKey` is returned in case of an error.
   "didDocument": null,
   "didResolutionMetadata": {
     "error": {
-      "type": "NOT_ALLOWED_GLOBAL_DUPLICATED_KEY",
-      "title": "Global duplicate key is not allowed.",
-      "detail": "Error NOT_ALLOWED_GLOBAL_DUPLICATE_KEY from resolver: Not allowed duplicate global verification methods."
+      "type": "NOT_ALLOWED_GLOBAL_DUPLICATE_KEY",
+      "title": "Duplicate keys are not allowed by policy.",
+      "detail": "Not allowed duplicate global verification methods: <did-1>#<key>, <did-2>#<key>",
+      "duplicateGlobalVerificationMethods": [
+        "<did-1>#<key>",
+        "<did-2>#<key>"
+      ]
     }
   },
   "didDocumentMetadata": {}
@@ -276,7 +283,7 @@ This DID Parameter is used to check if a DID document contains a bridge to a dom
 DNS, according to the [High Assurance DIDs with DNS](https://github.com/CIRALabs/high-assurance-dids-with-dns) specification, based on an allow-list and deny-list.
 Possible values are `ignore`, `warn`, `error`.
 
-The error code `unverifiableDnsBridge` is returned in case of an error.
+The error code `UNVERIFIED_DNS_BRIDGE` is returned in case of an error.
 
 #### Example Request
 
@@ -318,9 +325,9 @@ https://<did-resolver>/identifiers/did:web:danubetech.com:did:test7?verifyDnsBri
     "didDocument": null,
     "didResolutionMetadata": {
       "error": {
-        "type": "UNVERIFIABLE_DID_DNS_BRIDGE",
-        "title": "Unverifiable DID-DNS bridge.",
-        "detail": "Error UNVERIFIABLE_DID_DNS_BRIDGE from resolver: DID did:web:danubetech.com:did:test7 not found in DNS URI records for domain name rdapregistrygroup1.trustregistry.nborbit.ca.",
+        "type": "UNVERIFIED_DNS_BRIDGE",
+        "title": "The DID/DNS bridge could not be verified.",
+        "detail": "Error UNVERIFIED_DNS_BRIDGE from resolver: DID did:web:danubetech.com:did:test7 not found in DNS URI records for domain name rdapregistrygroup1.trustregistry.nborbit.ca.",
         "domainName": "rdapregistrygroup1.trustregistry.nborbit.ca",
         "uriRecordTargets": [
           "did:web:rdapregistrygroup1.trustregistry.nborbit.ca"
@@ -337,7 +344,7 @@ This DID Parameter is used to check if a DID document contains a key that cannot
 certificate authority, according to the [High Assurance DIDs with DNS](https://github.com/CIRALabs/high-assurance-dids-with-dns) specification, based on an allow-list
 and deny-list. Possible values are `ignore`, `warn`, `error`.
 
-The error code `unverifiableCertificateBridge` is returned in case of an error.
+The error code `UNVERIFIED_CERTIFICATE_BRIDGE` is returned in case of an error.
 
 #### Example Request
 
@@ -386,11 +393,11 @@ https://<did-resolver>/identifiers/did:web:danubetech.com:did:test4?verifyCertif
   "didDocument": null,
   "didResolutionMetadata": {
     "error": {
-      "type": "UNVERIFIABLE_DID_CERTIFICATE_BRIDGE",
-      "title": "Unverifiable DID-CERTIFICATE bridge.",
-      "detail": "Error UNVERIFIABLE_DID_CERTIFICATE_BRIDGE from resolver: Verification method's public key does not match certificate.",
-      "verificationMethod": "did:web:danubetech.com:did:test4#key-1",
-      "certificate": "4097"
+      "type": "UNVERIFIED_CERTIFICATE_BRIDGE",
+      "title": "The DID/Certificate bridge could not be verified.",
+      "detail": "Error UNVERIFIED_CERTIFICATE_BRIDGE from resolver: Verification method's public key does not match certificate",
+      "certificate": "4097",
+      "verificationMethodId": "did:web:danubetech.com:did:test4#key-1"
     }
   },
   "didDocumentMetadata": {}
