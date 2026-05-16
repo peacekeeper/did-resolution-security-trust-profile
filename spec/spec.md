@@ -8,11 +8,9 @@ DID Resolution Security and Trust Profile
 
 **Editors:**
 ~ [Markus Sabadello](https://www.linkedin.com/in/markus-sabadello-353a0821/) (Danube Tech)
-~ Others?
 <!-- -->
 **Authors:**
 ~ [Markus Sabadello](https://www.linkedin.com/in/markus-sabadello-353a0821/) (Danube Tech)
-~ Others?
 <!-- -->
 **Participate:**
 ~ [GitHub repo](https://github.com/peacekeeper/did-resolution-security-trust-profile)
