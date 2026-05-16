@@ -130,6 +130,13 @@ This DID Parameter is used to check if the DID document contains a key type that
 
 The error code `NOT_ALLOWED_KEY_TYPE` is returned in case of an error.
 
+Note that depending on the location, use case, and jurisdiction, the allow-lists and deny-lists for this feature may be determined by
+legal frameworks and associated technical standards. For example, the EU's Cyber Resilience Act (CRA) determines that a digital identity
+product shall implement cryptographic mechanisms according to the ENISA “Agreed Cryptographic Mechanism” guidance. The goal is to
+ensure the usage of state-of-the art cryptographic mechanisms. To accomplish this, the `checkKeyType` DID Parameter could be used to
+trigger warnings or errors, in situations when the key types used by the DID and DID document are not conformant with CRA, ENISA,
+or other frameworks.
+
 #### Example Response
 
 ```json
